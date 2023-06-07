@@ -13,10 +13,10 @@ resource "aws_s3_bucket" "pavm-s3-ds" {
 resource "aws_s3_bucket_acl" "acl-pavm-s3-ds" {
   bucket = aws_s3_bucket.pavm-s3-ds.id
   acl    = "private"
-  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_owner]
  }
 # Resource to avoid error "AccessControlListNotSupported: The bucket  does not allow ACLs"
-resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_owner" {
   bucket = aws_s3_bucket.pavm-s3-ds.id
   rule {
     object_ownership = "ObjectWriter"
