@@ -59,7 +59,7 @@ resource "aws_s3_object" "slash_reserved" {
 resource "aws_s3_object" "index80_html" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/HTML-80/index.html"
-  source                   = "./Webservers/HTML-80/index80.html"
+  source                   = "../Webservers/HTML-80/index80.html"
   force_destroy            = true
 }
 
@@ -67,7 +67,7 @@ resource "aws_s3_object" "index80_html" {
 resource "aws_s3_object" "index443_html" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/HTML-443/index.html"
-  source                   = "./Webservers/HTML-443/index443.html"
+  source                   = "../Webservers/HTML-443/index443.html"
   force_destroy            = true
 }
 
@@ -75,7 +75,7 @@ resource "aws_s3_object" "index443_html" {
 resource "aws_s3_object" "panlogo1" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/HTML-443/panlogo.png"
-  source                   = "./Webservers/HTML-443/panlogo.png"
+  source                   = "../Webservers/HTML-443/panlogo.png"
   force_destroy            = true
 }
 
@@ -83,7 +83,7 @@ resource "aws_s3_object" "panlogo1" {
 resource "aws_s3_object" "panlogo2" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/HTML-80/panlogo.png"
-  source                   = "./Webservers/HTML-80/panlogo.png"
+  source                   = "../Webservers/HTML-80/panlogo.png"
   force_destroy            = true
 }
 
@@ -91,21 +91,21 @@ resource "aws_s3_object" "panlogo2" {
 resource "aws_s3_object" "metascript1" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/scripts/getmetadata.sh"
-  source                   = "./Webservers/scripts/getmetadata.sh"
+  source                   = "../Webservers/scripts/getmetadata.sh"
   force_destroy            = true
 }
 # 
 resource "aws_s3_object" "metascriptwhite" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/scripts/getmetadata_white.sh"
-  source                   = "./Webservers/scripts/getmetadata_white.sh"
+  source                   = "../Webservers/scripts/getmetadata_white.sh"
   force_destroy            = true
 }
 # 
 resource "aws_s3_object" "metascriptblack" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/scripts/getmetadata_black.sh"
-  source                   = "./Webservers/scripts/getmetadata_black.sh"
+  source                   = "../Webservers/scripts/getmetadata_black.sh"
   force_destroy            = true
 }
 
@@ -113,25 +113,25 @@ resource "aws_s3_object" "metascriptblack" {
 resource "aws_s3_object" "sslconf" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/HTML-443/ssl.conf"
-  source                   = "./Webservers/HTML-443/ssl.conf"
+  source                   = "../Webservers/HTML-443/ssl.conf"
   force_destroy            = true
 }
 resource "aws_s3_object" "httpdconf" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/HTML-443/httpd.conf"
-  source                   = "./Webservers/HTML-443/httpd.conf"
+  source                   = "../Webservers/HTML-443/httpd.conf"
   force_destroy            = true
 }
 # startup config files for 2 Splunk SIEM servers
 resource "aws_s3_object" "splunk1script" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/scripts/splunk1_cfg.sh"
-  source                   = "./Webservers/splunk-scripts/splunk1_cfg.sh"
+  source                   = "../Webservers/splunk-scripts/splunk1_cfg.sh"
   force_destroy            = true
 }
 resource "aws_s3_object" "splunk2script" {
   bucket                   = aws_s3_bucket.webserver-s3-ds.id
   key                      = "/scripts/splunk2_cfg.sh"
-  source                   = "./Webservers/splunk-scripts/splunk2_cfg.sh"
+  source                   = "../Webservers/splunk-scripts/splunk2_cfg.sh"
   force_destroy            = true
 }
