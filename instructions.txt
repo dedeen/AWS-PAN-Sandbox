@@ -43,5 +43,12 @@ Raw instructions to build entire platform:
 >run show plugins vm_series aws gwlb
 The last command will show if the commands were successful. Once this is complete  you can log out of the PA-VM CLIs
 ---------------------------
+Configure the inbound NAT on the outer ALB to the IP addresses of the two inside ALBs (fronting the web servers) 
 By now the PA-VMs should have initialized and be accessible via https. Connect to each of them. 
+- Log in using admin/Temp1234!  (these creds are in the xml config in S3 that the firewalls bootstrapped from)
+- in objects, find 'Inside-ALB-FQDN', and change the FQDN to that of the just created ALB-Inside (find in AWS)
+   - here  is an example: internal-ALB-inside-1432735865.us-west-2.elb.amazonaws.com
+- save and commit the firewall change. 
+
+
 
