@@ -1,0 +1,4 @@
+Raw instructions to build entire platform: 
+- in AWS CLI environment (cloudshell or the like), git clone this repo. 
+-  cd into the shell subdir
+-  
