@@ -9,4 +9,8 @@ Raw instructions to build entire platform:
     - no instances yet
 -----
 [build the EC2s: TGWs, ALBs, GWLB, firewalls, end user EC2s, webservers]
-- 
+- terraform files named .. .tf.not need to be mv'ed to .tf
+   - hold off on renaming the webservers.tf.not and vpn.tf.not for now
+- terraform apply 
+------------
+
