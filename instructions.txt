@@ -2,6 +2,8 @@ Raw instructions to build entire platform:
 - in AWS CLI environment (cloudshell or the like), git clone this repo. 
 -  cd into the shell subdir
 -  run setup.sh to install terraform
+
+-------------------------------
 [build the AWS networks]
 - cd to the Terraform subdir
 - terraform init, apply - wait until successful. Large build (~200 resources), so may have to rerun apply 
@@ -11,6 +13,35 @@ Raw instructions to build entire platform:
 [build the EC2s: TGWs, ALBs, GWLB, firewalls, end user EC2s, webservers]
 - terraform files named .. .tf.not need to be mv'ed to .tf
    - hold off on renaming the webservers.tf.not and vpn.tf.not for now
-- terraform apply 
+- terraform apply  {about 50 resources]
+    - should have 6 EC2 instances now
 ------------
+[Modify the subnet to route table associations (~23 of them) using RTAssociations.sh in the Shell subdir]
+- ./RT-Associations.sh   -> will output as it goes, should not be any errors
+-----------
+[Now you need to get the key-pairs that were created and used to instantiate the EC2s into an ssh utility system]
+[in this example the keypair is named terraform-key-pair.987e]
+- download the keypair from the Terrform execution directory to your ssh'ing system. You will find the file in the 
+    terraform execution directory
+- you need to change the permissions on the keypair file, the utility in this repo (attribs.bat) will do so on a windows box
+-----------------------------
+[Access the firewall CLIs, one at a time, after they have initialized, using the keypair file you just retrieved]
+[ first get the public ip of each firewall, for example 52.34.204.73]
+- ssh admin@52.34.204.73 -i terraform-key-pair.987e.pem
+- run 'Configure-PAVM-GENEVE.sh'
+[the script will get the vpc endpoints from AWS that need to be configured in the PA-VMs for overlay routing and Geneve
+  decoding. Copy the output from the script into the PA-VM CLIs, same set of commands are applied to each firewall]
+[Here is an example:
+
+[Wait for up to 20 minutes for the PA-VM firewalls to bootstrap from S3 and initialize, then you can access 
+  them via HTTPS at their public IPs]
+>configure
+>run request plugins vm_series aws gwlb overlay-routing enable yes
+>run request plugins vm_series aws gwlb inspect enable yes
+>run request plugins vm_series aws gwlb associate vpc-endpoint vpce-0fd73f87b1b3277c6 interface ethernet1/1.1
+>run request plugins vm_series aws gwlb associate vpc-endpoint vpce-07eb059b146563197 interface ethernet1/1.1
+>run show plugins vm_series aws gwlb
+The last command will show if the commands were successful. Once this is complete  you can log out of the PA-VM CLIs
+---------------------------
+By now the PA-VMs should have initialized and be accessible via https. Connect to each of them. 
 
