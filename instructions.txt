@@ -1,4 +1,12 @@
 Raw instructions to build entire platform: 
 - in AWS CLI environment (cloudshell or the like), git clone this repo. 
 -  cd into the shell subdir
--  
+-  run setup.sh to install terraform
+[build the AWS networks]
+- cd to the Terraform subdir
+- terraform init, apply - wait until successful. Large build (~200 resources), so may have to rerun apply 
+    - should now have 5 VPCs, ~35 subnets, ~20 route tables, 2 new S3 buckets with configs inside, etc. 
+    - no instances yet
+-----
+[build the EC2s: TGWs, ALBs, GWLB, firewalls, end user EC2s, webservers]
+- 
