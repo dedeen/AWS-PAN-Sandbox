@@ -1,6 +1,6 @@
 #!/bin/bash
-git config --global user.email "dan@edeen.com"
-git config --global user.name "dedeen"
+git config --global user.email "dan@*****.***"
+git config --global user.name "d******"
 
 #######
 git add .
